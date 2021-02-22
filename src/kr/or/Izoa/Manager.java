@@ -52,5 +52,7 @@ public class Manager {
 		System.out.println("시스템이 종료됩니다.");
 		System.exit(0);
 	}
+	
+	//왜 push가 안될까?
 
 }
