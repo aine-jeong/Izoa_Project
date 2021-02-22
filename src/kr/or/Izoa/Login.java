@@ -1,3 +1,4 @@
+
 package kr.or.Izoa;
 
 import java.util.Scanner;
