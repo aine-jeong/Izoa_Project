@@ -54,5 +54,6 @@ public class Manager {
 	}
 	
 	//왜 push가 안될까?
+	//push가 왜 한번에 올라가냐? 깃허브 정신차려
 
 }
