@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Member {
+	Review_System memberReview = new Review_System();
     Scanner sc = new Scanner(System.in);
 
     public String id = loginUser();
@@ -194,6 +195,11 @@ public class Member {
         } else return;
         
     }
+    
+    public void review() {
+    	memberReview.member_Review_Menu();
+    }
+    
 
     public void logout() {
 
