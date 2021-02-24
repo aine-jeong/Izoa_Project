@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Manager {
-    String bookListPath = "C:\\Temp\\bookList.txt";
-
+	Review_System managerReview = new Review_System();
+	String bookListPath = "C:\\Temp\\bookList.txt";
     public static int money = 0;
 
     String id, pw;
@@ -64,8 +64,8 @@ public class Manager {
     //
 
     // 리뷰 조회
-    public void reviewInfo() {
-
+    public void review() {
+    	managerReview.manager_Review_Menu();
     }
 
     // 매출 조회
