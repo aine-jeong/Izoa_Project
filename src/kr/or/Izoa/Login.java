@@ -1,6 +1,8 @@
 package kr.or.Izoa;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Login {
@@ -44,7 +46,6 @@ public class Login {
                         e2.getStackTrace();
                     }
                 }
-                ////////
                 return id;
             } else {
                 System.out.println("비밀번호가 일치하지 않습니다.");

@@ -24,11 +24,11 @@ public class Book implements Serializable {
         return "고객ID: " + id + "/ 예약 날짜: " + book_date + "/ 예약 시간: " + book_Time + "/ 시술종류: " + hairStyle;
     }
 
-    private int userDateChoice;
-    private int userTimeChoice;
-    private int userStyleChoice;
+    private int userDateChoice; // 유저가 선택한 예약 날짜의 번호
+    private int userTimeChoice; // 유저가 선택한 타임의 번호
+    private int userStyleChoice; // 유저가 선택한 시술 종류의 번호
 
-    private String loginUser() {
+    private String loginUser() { // 현재 로그인한 유저의 정보를 불러오기
         FileReader fr = null;
         BufferedReader br = null;
         try {
@@ -51,7 +51,7 @@ public class Book implements Serializable {
         return id;
     }
 
-    public Book input(Book book) {
+    public Book input(Book book) { // 예약 추가시 사용할 함수
         Scanner sc = new Scanner(System.in);
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("[yyyy년 MM월 dd일]");

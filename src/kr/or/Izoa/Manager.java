@@ -6,16 +6,12 @@ import java.util.*;
 public class Manager {
 	String bookListPath = "C:\\Temp\\bookList.txt";
     public static int money = 0;
-    
     public static Map<Integer, Review> reviewList = new HashMap<Integer, Review>();
-
 	static final String REVIEW_LIST_PATH = "C:\\Temp\\reviweList.txt";
-    
 
     String id, pw;
 
     public void Manager() {
-
     }
 
     // 회원 목록 조회
@@ -27,38 +23,6 @@ public class Manager {
             System.out.println("아이디: " + key + " / " + value.toString());
         }
         System.out.println("*****************************");
-//        // testBookList 해쉬맵에 파일 불러와서 다시 저장
-//        // 예약목록 확인시 현재 로그인된 id와 일치한 예약건만 인출
-//        File file = new File(User.MEMBER_LIST_PATH);
-//        try {
-//            FileInputStream fis = new FileInputStream(file);
-//            ObjectInputStream oos = new ObjectInputStream(fis);
-//
-//            User.memberList = (HashMap<String, User>) oos.readObject();
-//
-//            Set<String> set = User.memberList.keySet();
-//            System.out.println("******회원목록******");
-//            for (String id : set) {
-//                User value = (User) User.memberList.get(id);
-//                System.out.println("회원ID: " + id + " :: " + value.toString());
-//            }
-//
-//            oos.close();
-//            fis.close();
-//
-//        } catch (Exception e) {
-//            System.out.println("불러오는데 실패하였습니다.");
-//            e.printStackTrace();
-//        }
-    }
-
-    // 회원 목록 수정
-    public void memberEdit() {
-    }
-
-    // 회원 목록 삭제
-    public void memberDel() {
-        // remove(key) 메소드 사용
     }
 
     // 검증되지 않은 연산자 관련 경고 억제시키는 이노테이션

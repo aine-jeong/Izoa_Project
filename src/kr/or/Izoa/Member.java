@@ -1,7 +1,16 @@
 package kr.or.Izoa;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 
 public class Member {
 	Scanner sc = new Scanner(System.in);
@@ -77,50 +86,8 @@ public class Member {
 		}
 
 		memberList.put(id, user.input(user));
-
-//        joinSave();
-//        joinSave j = new joinSave();
-//        j.save();
 	}
 
-	// ###############멤버리스트 파일로 저장, 불러오기 다시해야됨####################
-	public void joinSave() {
-		File file = new File(MEMBER_LIST_PATH);
-		FileOutputStream fos = null;
-		ObjectOutputStream oos = null;
-		try {
-			fos = new FileOutputStream(file);
-			oos = new ObjectOutputStream(fos);
-
-			oos.writeObject(memberList);
-
-			oos.close();
-			fos.close();
-		} catch (Exception e) {
-			System.out.println("에러발생!!!");
-			e.printStackTrace();
-		}
-	}
-
-	@SuppressWarnings("unchecked")
-	public void allMemberInfo() {
-		// testBookList 해쉬맵에 파일 불러와서 다시 저장
-		// 예약목록 확인시 현재 로그인된 id와 일치한 예약건만 인출
-		File file = new File(MEMBER_LIST_PATH);
-		try {
-			FileInputStream fis = new FileInputStream(file);
-			ObjectInputStream oos = new ObjectInputStream(fis);
-
-			memberList = (HashMap<String, User>) oos.readObject();
-
-			oos.close();
-			fis.close();
-
-		} catch (Exception e) {
-			System.out.println("불러오는데 실패하였습니다.");
-			e.printStackTrace();
-		}
-	}
 
 	public void memberInfo() {
 		Set<String> set = memberList.keySet();
@@ -159,9 +126,6 @@ public class Member {
 		System.out.println("******회원목록******");
 		for (String key : set) {
 			User value = (User) memberList.get(key);
-//            if(this.id.equals(value.id)) {
-//                System.out.println("회원ID: " + key + " :: " + value.toString());
-//            }
 			System.out.println("회원ID: " + key + " :: " + value.toString());
 		}
 	}

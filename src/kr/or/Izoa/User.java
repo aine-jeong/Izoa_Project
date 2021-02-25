@@ -63,29 +63,6 @@ public class User implements Serializable {
             phoneCheck = phone.matches(phoneRegEx);
         }
 
-//        // @@@ 수정해야돼 @@@ 핸드폰번호 중복 확인
-//        boolean phonedup = true;
-//        while (phonedup) {
-//            for (int i = 0; i <= Member.memberList.size(); i++) {
-//                if (phone.equals(Member.memberList.get(i).phone)) {
-//                    System.out.println("이미 등록된 핸드폰번호 입니다.");
-//                    System.out.print("핸드폰번호: ");
-//                    System.out.println("ex) 010-1234-1234");
-//                    phone = sc.nextLine();
-//                    phoneCheck = phone.matches(phoneRegEx);
-//                    while (!phoneCheck) {
-//                        System.out.println("핸드폰번호의 형식이 잘못되었습니다.");
-//                        System.out.print("핸드폰번호: ");
-//                        System.out.println("ex) 010-1234-1234");
-//                        phone = sc.nextLine();
-//                        phoneCheck = phone.matches(phoneRegEx);
-//                    }
-//                } else {
-//                    phonedup = false;
-//                }
-//            }
-//        }
-
         // 가입완료
         // ㄴ> 회원리스트에 정보 넣기
         // ㄴ> 멤버 생성하기

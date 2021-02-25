@@ -7,9 +7,6 @@ import java.text.SimpleDateFormat;
 //본인의 리뷰
 //회원 전체의 리뷰
 
-//날짜 + 아이디 + 리뷰 내용이 떠야한다.
-//[    ] [   ] [              ]
-
 public class Review implements Serializable {
 	public String id = loginUser();
 	private String date = null;

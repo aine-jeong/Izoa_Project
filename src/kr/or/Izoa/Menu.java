@@ -1,7 +1,8 @@
 package kr.or.Izoa;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Scanner;
 
 public class Menu {
     private Scanner sc = new Scanner(System.in);
@@ -292,36 +293,5 @@ public class Menu {
         System.out.println("3. 펌 --------50,000");
     }
 
-    void manager_MemberMenu() {
-        while (true) {
-            System.out.println("■□■□[관리자_회원정보 관리]■□■□");
-            System.out.println("<0> 이전화면으로 돌아가기");
-            System.out.println("<1> 회원 정보 조회");
-            System.out.println("<2> 회원 정보 수정");
-            System.out.println("<3> 회원 탈퇴");
-            System.out.println(">> 이용하실 메뉴 번호를 입력해주세요");
-            System.out.print("> ");
-            int userChoice = sc.nextInt();
-            // 메뉴번호 범위 체크
-            while (userChoice > 3 || userChoice < 0) {
-                System.out.println("메뉴 번호를 잘못 입력하셨습니다.");
-                System.out.print("다시 입력해주세요: ");
-                userChoice = sc.nextInt();
-            }
-
-            switch (userChoice) {
-            case 0:
-                return;
-            case 1:
-                manager.memberInfo();
-                break;
-            case 2:
-                manager.memberEdit();
-                break;
-            case 3:
-                manager.memberDel();
-            }
-        }
-    }
 
 }
