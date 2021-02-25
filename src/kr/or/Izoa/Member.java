@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class Member {
 	Scanner sc = new Scanner(System.in);
-	private String loginID = loginUser();
+	public String loginID = loginUser();
 
 	public static Map<Integer, Review> reviewList = new HashMap<Integer, Review>();
 	public static Map<Integer, Book> bookList = new HashMap<Integer, Book>();
@@ -90,6 +90,7 @@ public class Member {
 
 
 	public void memberInfo() {
+	    loginID = loginUser();
 		Set<String> set = memberList.keySet();
 		System.out.println("*****************************");
 		for (String key : set) {
@@ -102,12 +103,14 @@ public class Member {
 	}
 
 	public void memberEdit() {
+	    loginID = loginUser();
 		User user = new User();
 		System.out.println("아이디는 변경할 수 없습니다.");
 		memberList.put(loginID, user.input(user));
 	}
 
 	public void memberDel() {
+	    loginID = loginUser();
 		Menu menu = new Menu();
 		System.out.println("탈퇴시, 복구할 수 없습니다.");
 		System.out.println("탈퇴하시겠습니까?");
@@ -144,9 +147,6 @@ public class Member {
 		// 전체 예약 목록에 저장
 		bookList.put(bookNum, book.input(book));
 
-		// ## 시술종류 카트 만들기
-		// ## 고객 이름만 뽑아다가 넣기 ..
-
 		// 전체 예약 목록 텍스트파일에 저장하기
 		bookingsave();
 
@@ -178,6 +178,7 @@ public class Member {
 	// 검증되지 않은 연산자 관련 경고 억제시키는 이노테이션
 	@SuppressWarnings("unchecked")
 	public void bookingInfo() {
+	    loginID = loginUser();
 		// testBookList 해쉬맵에 파일 불러와서 다시 저장
 		// 예약목록 확인시 현재 로그인된 id와 일치한 예약건만 인출
 		File file = new File(BOOK_LIST_PATH);
@@ -292,6 +293,7 @@ public class Member {
 
 	// 리뷰 삭제
 	public void delete_Review() {
+	    load_Review();
 		System.out.print("삭제하실 리뷰번호를 입력해 주세요 : ");
 		int deleteChoice = sc.nextInt();
 		if (reviewList.containsKey(deleteChoice)) {
@@ -320,29 +322,25 @@ public class Member {
 	}
 
 	// 이 아이디의 유저가 작성한 리뷰 불러오기
-	public void load_Review() {
-		
+	@SuppressWarnings("unchecked")
+    public void load_Review() {
+	    loginID = loginUser();
 		File file = new File(REVIEW_LIST_PATH);
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream oos = new ObjectInputStream(fis);
 
-			reviewList = (HashMap) oos.readObject();
+			reviewList = (HashMap<Integer, Review>) oos.readObject();
 
 			Set<Integer> set = reviewList.keySet();
-			System.out.println("리뷰번호\t아이디\t\t\t작성시간\t\t\t리뷰내용");
+			System.out.println("리뷰번호\t\t아이디\t\t\t작성시간\t\t\t리뷰내용");
 			for (Integer number : set) {
-//				String id = reviewList.get(number).getId();
-//				String review = reviewList.get(number).getReview();
-//				String date = reviewList.get(number).getDate();
-//
-//				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
 				Review value = (Review) reviewList.get(number);
 				if (this.loginID.equals(value.id)) {
 					String id = reviewList.get(number).getId();
 					String review = reviewList.get(number).getReview();
 					String date = reviewList.get(number).getDate();
-					System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
+					System.out.printf("%s\t\t%s\t\t%s\t%s\n", number, id, date, review);
 				}
 			}
 			
@@ -357,6 +355,7 @@ public class Member {
 
 	// 리뷰 수정
 	public void edit_Review() {
+	    load_Review();
 		File file = new File(REVIEW_LIST_PATH);
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -365,7 +364,7 @@ public class Member {
 			reviewList = (HashMap) oos.readObject();
 
 			Review review = new Review();
-
+			
 			System.out.println("수정하실 리뷰 번호를 입력해주세요 : ");
 			int EditReviewNum = sc.nextInt();
 			reviewList.put(EditReviewNum, review.inputReview(review));

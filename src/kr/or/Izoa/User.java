@@ -66,7 +66,6 @@ public class User implements Serializable {
         // 가입완료
         // ㄴ> 회원리스트에 정보 넣기
         // ㄴ> 멤버 생성하기
-//        System.out.println("가입이 완료되었습니다. ");
         System.out.println(name + "님, 환영합니다.");
 
         return user;

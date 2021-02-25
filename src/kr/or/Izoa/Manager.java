@@ -64,13 +64,13 @@ public class Manager {
 			reviewList = (HashMap) oos.readObject();
 
 			Set<Integer> set = reviewList.keySet();
-			System.out.println("리뷰번호\t아이디\t\t\t작성시간\t\t\t리뷰내용");
+			System.out.println("리뷰번호\t\t아이디\t\t\t작성시간\t\t\t리뷰내용");
 			for (Integer number : set) {
 				String id = reviewList.get(number).getId();
 				String review = reviewList.get(number).getReview();
 				String date = reviewList.get(number).getDate();
 
-				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
+				System.out.printf("%s\t\t%s\t\t%s\t%s\n", number, id, date, review);
 			}
 			oos.close();
 			fis.close();

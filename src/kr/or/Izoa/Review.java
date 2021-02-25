@@ -39,6 +39,8 @@ public class Review implements Serializable {
 	
 	
 	public Review inputReview(Review review) {
+	    
+	    
 		Scanner scan = new Scanner(System.in);
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy년MM월dd일HH시mm분");
 		Calendar c = Calendar.getInstance();

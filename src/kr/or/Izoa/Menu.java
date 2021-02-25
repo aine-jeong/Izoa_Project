@@ -1,5 +1,7 @@
 package kr.or.Izoa;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -7,7 +9,7 @@ import java.util.Scanner;
 public class Menu {
     private Scanner sc = new Scanner(System.in);
 
-    private String loginID;
+    private String loginID = loginUser();
 
     private int userDateChoice;
     private int userTimeChoice;
@@ -17,6 +19,31 @@ public class Menu {
     private Login login = new Login();
     private Member member = new Member();
     private Manager manager = new Manager();
+    
+    public boolean logincheck = false;
+    
+    private String loginUser() { // 현재 로그인한 유저의 정보를 불러오기
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader("C:\\Temp\\loginUser.txt");
+            br = new BufferedReader(fr);
+            String str = "";
+            while ((str = br.readLine()) != null) {
+                loginID = str;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+                fr.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return loginID;
+    }
 
     public void showMenu() {
 
@@ -39,7 +66,13 @@ public class Menu {
                 member.join();
                 break;
             case 2:
-                loginID = login.Login_check();
+//                loginID = login.Login_check();
+                if(logincheck) logincheck = false;
+                while(!logincheck) {
+                    logincheck = login.Login_check();
+                }
+                
+                loginID = loginUser(); 
                 if (loginID.equals("admin"))
                     managerMenu();
                 else
@@ -133,6 +166,7 @@ public class Menu {
                 break;
             case 3:
                 member_BookMenu();
+                break;
             case 4:
                 return;
             }
@@ -179,7 +213,7 @@ public class Menu {
     	        System.out.println("*****리뷰 관리*****");
     	        System.out.println("<0> 이전화면으로 돌아가기");
     	        System.out.println("<1> 리뷰 작성");
-    	        System.out.println("<2> 리뷰 조회");
+    	        System.out.println("<2> 미용실 리뷰 조회");
     	        System.out.println("<3> 리뷰 수정");
     	        System.out.println("<4> 리뷰 삭제");
     	        System.out.print("원하는 메뉴 번호를 입력하세요>  ");
@@ -198,7 +232,7 @@ public class Menu {
     	            member.add_Review();
     	            break;
     	        case 2:
-    	            member.load_Review();
+    	            manager.load_Review(); // 전체 목록이 보여야 해서 매니저와 함수 동일
     	            break;
     	        case 3:
     	            member.edit_Review();
