@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Manager {
-	Review_System managerReview = new Review_System();
+//	Review_System managerReview = new Review_System();
 	String bookListPath = "C:\\Temp\\bookList.txt";
     public static int money = 0;
 
@@ -19,16 +19,44 @@ public class Manager {
 
     // 회원 목록 조회
     public void memberInfo() {
-        // 저장된 memberList를 entryset or keyset 이용하여 전체 불러오기
+        Set<String> set = Member.memberList.keySet();
+        System.out.println("***********<회원목록>**********");
+        for (String key : set) {
+            User value = (User) Member.memberList.get(key);
+            System.out.println("아이디: " + key + " / " + value.toString());
+        }
+        System.out.println("*****************************");
+//        // testBookList 해쉬맵에 파일 불러와서 다시 저장
+//        // 예약목록 확인시 현재 로그인된 id와 일치한 예약건만 인출
+//        File file = new File(User.MEMBER_LIST_PATH);
+//        try {
+//            FileInputStream fis = new FileInputStream(file);
+//            ObjectInputStream oos = new ObjectInputStream(fis);
+//
+//            User.memberList = (HashMap<String, User>) oos.readObject();
+//
+//            Set<String> set = User.memberList.keySet();
+//            System.out.println("******회원목록******");
+//            for (String id : set) {
+//                User value = (User) User.memberList.get(id);
+//                System.out.println("회원ID: " + id + " :: " + value.toString());
+//            }
+//
+//            oos.close();
+//            fis.close();
+//
+//        } catch (Exception e) {
+//            System.out.println("불러오는데 실패하였습니다.");
+//            e.printStackTrace();
+//        }
     }
 
     // 회원 목록 수정
     public void memberEdit() {
-        // 똑같은 key 값을 put하면 value값이 덮어씌어짐
     }
 
     // 회원 목록 삭제
-    public void memberDel(String[] input) {
+    public void memberDel() {
         // remove(key) 메소드 사용
     }
 
@@ -60,34 +88,15 @@ public class Manager {
             e.printStackTrace();
         }
     }
-    
-    //
 
     // 리뷰 조회
     public void review() {
-    	managerReview.manager_Review_Menu();
+//    	managerReview.manager_Review_Menu();
     }
 
     // 매출 조회
     public void payInfo() {
         System.out.println("전체 매출: " + money);
     }
-
-    // 로그아웃
-    public void logout() {
-        // 다중 중첩문 탈출법 이용
-        // 시작점 loopout:
-        // 원하는 종료점 break loopout;
-        // 초기 메뉴 <1>회원가입 <2>로그인 메뉴로 돌아가기
-    }
-
-    // 시스템 아웃
-    public void systemOut() {
-        System.out.println("시스템이 종료됩니다.");
-        System.exit(0);
-    }
-
-    // 왜 push가 안될까?
-    // push가 왜 한번에 올라가냐? 깃허브 정신차려
 
 }

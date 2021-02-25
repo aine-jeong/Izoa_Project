@@ -10,26 +10,28 @@ import java.util.Scanner;
 public class Book implements Serializable {
     public String id = loginUser();
 
-    String bookID; // 예약한 사람
+    private String bookID; // 예약한 사람
 
-    String book_date; // 예약 날짜
-    String book_Time; // 예약 시간
-    String hairStyle;
+    private String book_date; // 예약 날짜
+    private String book_Time; // 예약 시간
+    private String hairStyle; // 시술 종류
 
-    int price;
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
 
     @Override
     public String toString() {
         return "고객ID: " + id + "/ 예약 날짜: " + book_date + "/ 예약 시간: " + book_Time + "/ 시술종류: " + hairStyle;
     }
 
-    /////////////////////
+    private int userDateChoice;
+    private int userTimeChoice;
+    private int userStyleChoice;
 
-    int userDateChoice;
-    int userTimeChoice;
-    int userStyleChoice;
-
-    public String loginUser() {
+    private String loginUser() {
         FileReader fr = null;
         BufferedReader br = null;
         try {
@@ -150,5 +152,6 @@ public class Book implements Serializable {
        
         return book;
     }
+
 
 }
