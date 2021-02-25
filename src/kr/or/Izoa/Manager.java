@@ -4,12 +4,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class Manager {
-//	Review_System managerReview = new Review_System();
 	String bookListPath = "C:\\Temp\\bookList.txt";
     public static int money = 0;
+    
+    public static Map<Integer, Review> reviewList = new HashMap<Integer, Review>();
+
+	static final String REVIEW_LIST_PATH = "C:\\Temp\\reviweList.txt";
+    
 
     String id, pw;
 
@@ -90,13 +95,40 @@ public class Manager {
     }
 
     // 리뷰 조회
-    public void review() {
-//    	managerReview.manager_Review_Menu();
+    public void load_Review() {
+    	File file = new File(REVIEW_LIST_PATH);
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream oos = new ObjectInputStream(fis);
+
+			reviewList = (HashMap) oos.readObject();
+
+			Set<Integer> set = reviewList.keySet();
+			System.out.println("리뷰번호\t아이디\t\t\t작성시간\t\t\t리뷰내용");
+			for (Integer number : set) {
+				String id = reviewList.get(number).getId();
+				String review = reviewList.get(number).getReview();
+				String date = reviewList.get(number).getDate();
+
+				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
+			}
+			oos.close();
+			fis.close();
+
+		} catch (Exception e) {
+			System.out.println("불러오는데 실패하였습니다.");
+			e.printStackTrace();
+		}
     }
 
     // 매출 조회
     public void payInfo() {
         System.out.println("전체 매출: " + money);
     }
+    
+    public void exit_System() {
+		System.out.println("시스템을 종료합니다.");
+		System.exit(0);
+	}
 
 }
