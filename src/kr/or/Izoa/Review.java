@@ -11,10 +11,36 @@ import java.text.SimpleDateFormat;
 //[    ] [   ] [              ]
 
 public class Review implements Serializable {
-	private String id = null;
+	public String id = loginUser();
 	private String date = null;
 	private String review = null;
 
+	private String loginUser() {
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader("C:\\Temp\\loginUser.txt");
+            br = new BufferedReader(fr);
+            String str = "";
+            while ((str = br.readLine()) != null) {
+                id = str;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+                fr.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return id;
+    }
+	
+	
+	
+	
 	public Review inputReview(Review review) {
 		Scanner scan = new Scanner(System.in);
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy년MM월dd일HH시mm분");

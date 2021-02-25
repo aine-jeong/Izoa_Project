@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Member {
 	Scanner sc = new Scanner(System.in);
-	int count = 1;
 	private String loginID = loginUser();
 
 	public static Map<Integer, Review> reviewList = new HashMap<Integer, Review>();
@@ -299,11 +298,18 @@ public class Member {
 
 	// 리뷰 추가
 	public void add_Review() {
+
+		// 예약번호 랜덤부여 (예약번호 -> HashMap key값)
+		int reviewNum = (int) (Math.random() * 9000 + 1000);
+		boolean dup = true;
+		while (dup) {
+			dup = reviewList.containsKey(reviewNum);
+			reviewNum = (int) (Math.random() * 9000 + 1000);// 해당 번호가 있으면 true반환
+		}
+
 		Review review = new Review();
 
-		reviewList.put(count, review.inputReview(review));
-		count++;
-		this.count = count;
+		reviewList.put(reviewNum, review.inputReview(review));
 		// 저장
 		try {
 			FileOutputStream fos = new FileOutputStream(REVIEW_LIST_PATH);
@@ -351,6 +357,7 @@ public class Member {
 
 	// 이 아이디의 유저가 작성한 리뷰 불러오기 -> 현재 전체 목록 조회만 가능
 	public void load_Review() {
+		
 		File file = new File(REVIEW_LIST_PATH);
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -361,12 +368,20 @@ public class Member {
 			Set<Integer> set = reviewList.keySet();
 			System.out.println("리뷰번호\t아이디\t\t\t작성시간\t\t\t리뷰내용");
 			for (Integer number : set) {
-				String id = reviewList.get(number).getId();
-				String review = reviewList.get(number).getReview();
-				String date = reviewList.get(number).getDate();
-
-				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
+//				String id = reviewList.get(number).getId();
+//				String review = reviewList.get(number).getReview();
+//				String date = reviewList.get(number).getDate();
+//
+//				System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
+				Review value = (Review) reviewList.get(number);
+				if (this.loginID.equals(value.id)) {
+					String id = reviewList.get(number).getId();
+					String review = reviewList.get(number).getReview();
+					String date = reviewList.get(number).getDate();
+					System.out.printf("%s\t\t%s\t\t%s\t\t%s\n", number, id, date, review);
+				}
 			}
+			
 			oos.close();
 			fis.close();
 
