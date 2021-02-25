@@ -1,8 +1,6 @@
 package kr.or.Izoa;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class Login {

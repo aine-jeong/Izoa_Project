@@ -355,7 +355,7 @@ public class Member {
 
 	}
 
-	// 이 아이디의 유저가 작성한 리뷰 불러오기 -> 현재 전체 목록 조회만 가능
+	// 이 아이디의 유저가 작성한 리뷰 불러오기
 	public void load_Review() {
 		
 		File file = new File(REVIEW_LIST_PATH);

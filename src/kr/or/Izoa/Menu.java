@@ -1,8 +1,7 @@
 package kr.or.Izoa;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
     private Scanner sc = new Scanner(System.in);
@@ -79,7 +78,7 @@ public class Menu {
                 manager.bookInfo();
                 break;
             case 3:
-                // ####매니저 리뷰인포 메뉴 불러오기#####
+                manager.load_Review();
                 break;
             case 4:
                 manager.payInfo();
@@ -129,7 +128,7 @@ public class Menu {
                 member_MemberMenu();
                 break;
             case 2:
-                // #### 리뷰 메뉴 구현해주세요
+                member_ReviewMenu();
                 break;
             case 3:
                 member_BookMenu();
@@ -173,13 +172,45 @@ public class Menu {
 
     }
 
-    // ## 리뷰메뉴 구현해주세요 ###
     void member_ReviewMenu() {
-
-        // 1. reviewList 읽어오기
-        // 2. Member.reviewAdd
-        // 3. Member.reviewEdit
-        // 4. Member.reviewDel
+    	try {
+    	    while (true) {
+    	        System.out.println("*****리뷰 관리*****");
+    	        System.out.println("<0> 이전화면으로 돌아가기");
+    	        System.out.println("<1> 리뷰 작성");
+    	        System.out.println("<2> 리뷰 조회");
+    	        System.out.println("<3> 리뷰 수정");
+    	        System.out.println("<4> 리뷰 삭제");
+    	        System.out.print("원하는 메뉴 번호를 입력하세요>  ");
+    	        int userChoice = sc.nextInt();
+    	        sc.nextLine();
+    	        while (userChoice > 4 || userChoice < 0) {
+    	            System.out.println("메뉴 번호를 잘못 입력하셨습니다.");
+    	            System.out.print("다시 입력해주세요: ");
+    	            userChoice = sc.nextInt();
+    	        }
+    	
+    	        switch (userChoice) {
+    	        case 0:
+    	            return;
+    	        case 1:
+    	            member.add_Review();
+    	            break;
+    	        case 2:
+    	            member.load_Review();
+    	            break;
+    	        case 3:
+    	            member.edit_Review();
+    	            break;
+    	        case 4:
+    	            member.delete_Review();
+    	            break;
+    	
+    	        }
+    	    }
+    	} catch (Exception e) {
+    	    System.out.println(e.getMessage());
+    	}
 
     }
 

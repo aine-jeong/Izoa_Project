@@ -1,12 +1,7 @@
 package kr.or.Izoa;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class User implements Serializable {
     private Scanner sc = new Scanner(System.in);

@@ -1,11 +1,7 @@
 package kr.or.Izoa;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 public class Manager {
 	String bookListPath = "C:\\Temp\\bookList.txt";
